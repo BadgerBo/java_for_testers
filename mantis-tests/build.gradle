@@ -1,0 +1,61 @@
+apply plugin: 'application'
+apply plugin: 'java'
+mainClassName = 'Main.java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.testng', name: 'testng', version: '6.11'
+    compile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.1.0'
+    // https://mvnrepository.com/artifact/commons-net/commons-net
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    // https://mvnrepository.com/artifact/org.subethamail/subethasmtp
+    compile group: 'org.subethamail', name: 'subethasmtp', version: '3.1.7'
+    // https://mvnrepository.com/artifact/ru.lanwen.verbalregex/java-verbal-expressions
+    compile group: 'ru.lanwen.verbalregex', name: 'java-verbal-expressions', version: '1.4'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.10.Final'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
+    // https://mvnrepository.com/artifact/biz.futureware.mantis/mantis-axis-soap-client
+    compile group: 'biz.futureware.mantis', name: 'mantis-axis-soap-client', version: '1.2.19'
+    // https://mvnrepository.com/artifact/org.springframework/spring
+    compile group: 'org.springframework', name: 'spring', version: '2.5.6'
+    // https://mvnrepository.com/artifact/biz.futureware.mantis/mantis-axis-soap-client
+    compile group: 'biz.futureware.mantis', name: 'mantis-axis-soap-client', version: '1.2.19'
+}
+
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'varifyUI', "${verifyUI}"
+    }
+}
+
+task testContacts(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'varifyUI', "${verifyUI}"
+    }
+
+}

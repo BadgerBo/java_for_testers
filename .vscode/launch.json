@@ -1,0 +1,65 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            //"vmArgs": "-ea -Dbrowser=chrome -Dtarget=local DverifyUI=true"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-GroupDataGenerator<addressbook-web-tests>",
+            "request": "launch",
+            "mainClass": "ru.stqa.pft.addressbook.generators.GroupDataGenerator",
+            "projectName": "addressbook-web-tests",
+            "cwd": "${workspaceFolder}/addressbook-web-tests",
+            "args": "-c 3 -f src/test/resources/groups.json -d json"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ContactDataGenerator",
+            "request": "launch",
+            "mainClass": "ru.stqa.pft.addressbook.generators.ContactDataGenerator",
+            "projectName": "addressbook-web-tests",
+            "cwd": "${workspaceFolder}/addressbook-web-tests",
+            "args": "-c 2 -f src/test/resources/contacts.json -d json"
+        },
+        /*
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - GroupModificationTests",
+            "request": "launch",
+            "mainClass": "ru.stqa.pft.addressbook.tests.GroupModificationTests",
+            "projectName": "addressbook-web-tests",
+            "cwd": "${workspaceFolder}/addressbook-web-tests",
+            "vmArgs": "-ea -DverifyUI=true"
+        },
+        */
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Collections<sandbox>",
+            "request": "launch",
+            "mainClass": "ru.stqa.pft.sandbox.Collections",
+            "projectName": "sandbox"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Equality<sandbox>",
+            "request": "launch",
+            "mainClass": "ru.stqa.pft.sandbox.Equality",
+            "projectName": "sandbox"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MyFirstProgram<sandbox>",
+            "request": "launch",
+            "mainClass": "ru.stqa.pft.sandbox.MyFirstProgram",
+            "projectName": "sandbox"
+        }
+    ]
+}

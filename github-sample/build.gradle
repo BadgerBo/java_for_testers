@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+    // https://mvnrepository.com/artifact/com.jcabi/jcabi-github
+    compile group: 'com.jcabi', name: 'jcabi-github', version: '0.27'
+}
