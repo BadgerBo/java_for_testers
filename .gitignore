@@ -8,3 +8,6 @@ gradle-app.setting
 !gradle-wrapper.jar
 .idea/workspace.xml
 *.log
+
+# SeleniumServer
+selenium-server-standalone-3.141.59.jar
