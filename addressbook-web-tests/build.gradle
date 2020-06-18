@@ -4,6 +4,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    agent
+}
+
 dependencies {
     //compile 'org.testng:testng:6.9.10'
     //compile 'org.seleniumhq.selenium:selenium-java:2.50.0'
@@ -23,6 +27,10 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final' 
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.0'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-testng-adaptor
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.4.0.RC4'
 }
 
 task testGroups(type: Test) {
@@ -41,6 +49,10 @@ task testGroups(type: Test) {
     if (project.hasProperty('verifyUI')) {
         systemProperty 'verifyUI', "${verifyUI}"
     }
+}
+
+testGroups.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
 task testContacts(type: Test) {
