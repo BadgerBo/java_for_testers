@@ -1,10 +1,16 @@
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName = 'ru.stqa.pft.sandbox.MyFirstProgram'
-//'Main.java'
-//"ru.stqa.pft.sandbox.MyFirstProgram"
 
 sourceCompatibility = 1.8
+
+configurations {
+    agent
+}
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
 
 repositories {
     mavenCentral()
@@ -13,6 +19,12 @@ repositories {
 dependencies {
     // https://mvnrepository.com/artifact/org.testng/testng
     testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.0'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-testng-adaptor
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.4.0.RC4'
+    agent "org.aspectj:aspectjweaver:1.8.10"
+    compile "io.qameta.allure:allure-testng:2.0-BETA10"
 }
 
 test {
