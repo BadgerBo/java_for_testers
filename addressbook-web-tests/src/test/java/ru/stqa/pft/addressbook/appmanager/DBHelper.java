@@ -46,7 +46,7 @@ public class DBHelper {
     return new Groups(result);
   }
 
-@SortNatural
+
   public Contacts contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
