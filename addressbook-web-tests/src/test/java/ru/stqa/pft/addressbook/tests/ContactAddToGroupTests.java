@@ -22,7 +22,7 @@ public class ContactAddToGroupTests extends TestBase {
       app.group().create(new GroupData().withName("test"));
     }
     if (app.db().contacts().size() == 0) {
-      File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+      File photo = new File("src/test/resources/stru.png");
       app.contact().create(new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo), false);
     }
   }
@@ -33,7 +33,7 @@ public class ContactAddToGroupTests extends TestBase {
     app.contact().viewContactsWithoutGroups();
     Contacts contacts = app.contact().all();
     if (contacts.size() == 0) {
-      File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+      File photo = new File("src/test/resources/stru.png");
       app.contact().create(new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo), false);
       app.goTo().homePage();
       app.contact().viewContactsWithoutGroups();

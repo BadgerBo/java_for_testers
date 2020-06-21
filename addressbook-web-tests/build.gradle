@@ -31,11 +31,12 @@ dependencies {
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.0'
     // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-testng-adaptor
     compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.4.0.RC4'
+
 }
 
 task testGroups(type: Test) {
     useTestNG {
-        suites 'addressbook-web-tests/src/test/resources/testng-groups.xml'
+        suites 'src/test/resources/testng-groups.xml'
     }
     if (project.hasProperty('platform')) {
         systemProperty 'platform', "${platform}"
@@ -51,13 +52,15 @@ task testGroups(type: Test) {
     }
 }
 
+/*
 testGroups.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
+*/
 
 task testContacts(type: Test) {
     useTestNG {
-        suites 'addressbook-web-tests/src/test/resources/testng-contacts.xml'
+        suites 'src/test/resources/testng-contacts.xml'
     }
     if (project.hasProperty('platform')) {
         systemProperty 'platform', "${platform}"

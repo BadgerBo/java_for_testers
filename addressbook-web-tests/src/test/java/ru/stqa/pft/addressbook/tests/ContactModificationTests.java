@@ -16,7 +16,7 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().homePage();
     if (app.contact().all().size() == 0) {
-      File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+      File photo = new File("src/test/resources/stru.png");
       app.contact().create(new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo), true);
     }
   }
@@ -25,7 +25,7 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
-    File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+    File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstname("test_name").withLastname("test_surname").withPhoto(photo);
     app.contact().modify(contact);

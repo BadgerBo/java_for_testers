@@ -1,6 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'application'
-mainClassName = 'Main.java'//"ru.stqa.pft.sandbox.MyFirstProgram"
+mainClassName = 'ru.stqa.pft.sandbox.MyFirstProgram'
+//'Main.java'
+//"ru.stqa.pft.sandbox.MyFirstProgram"
 
 sourceCompatibility = 1.8
 

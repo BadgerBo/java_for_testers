@@ -25,7 +25,7 @@ public class ContactCreationTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validContactsFromXml() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("addressbook-web-tests/src/test/resources/contacts.xml")))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
       String xml = "";
       String line = reader.readLine();
       while (line != null) {
@@ -41,7 +41,7 @@ public class ContactCreationTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validContactsFromJson() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("addressbook-web-tests/src/test/resources/contacts.json")))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
@@ -57,7 +57,7 @@ public class ContactCreationTests extends TestBase {
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
     Groups groups = app.db().groups();
-    File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+    File photo = new File("src/test/resources/stru.png");
     ContactData newContact = new ContactData().withFirstname(contact.getFirstname()).withLastname(contact.getLastname())
     .withPhoto(photo).inGroup(groups.iterator().next());
     app.goTo().homePage();
@@ -74,7 +74,7 @@ public class ContactCreationTests extends TestBase {
   public void testBadContactCreation() {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-    File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+    File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData().withFirstname("test_name'").withPhoto(photo);
     app.contact().create(contact, true);
     assertThat(app.group().count(), equalTo(before.size()));
@@ -86,7 +86,7 @@ public class ContactCreationTests extends TestBase {
   public void testCurrentDir() {
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());
-    File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+    File photo = new File("src/test/resources/stru.png");
     System.out.println(photo.getAbsolutePath());
     System.out.println(photo.exists());
   }

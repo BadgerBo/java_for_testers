@@ -16,7 +16,7 @@ public class ContactDeletionTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().homePage();
     if (app.contact().all().size() == 0) {
-      File photo = new File("addressbook-web-tests/src/test/resources/stru.png");
+      File photo = new File("src/test/resources/stru.png");
       app.contact().create(new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo), true);
     }
   }
