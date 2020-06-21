@@ -1,11 +1,15 @@
 apply plugin: 'java'
 
-repositories {
-    mavenCentral()
-}
-
 configurations {
     agent
+}
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
@@ -31,6 +35,8 @@ dependencies {
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.0'
     // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-testng-adaptor
     compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.4.0.RC4'
+    agent "org.aspectj:aspectjweaver:1.8.10"
+    compile "io.qameta.allure:allure-testng:2.0-BETA10"
 
 }
 
@@ -52,15 +58,10 @@ task testGroups(type: Test) {
     }
 }
 
-/*
-testGroups.doFirst {
-    jvmArgs "-javaagent:${configurations.agent.singleFile}"
-}
-*/
-
 task testContacts(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-contacts.xml'
+        systemProperty 'allure.results.directory', 'build/allure-results'
     }
     if (project.hasProperty('platform')) {
         systemProperty 'platform', "${platform}"
